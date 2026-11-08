@@ -1,0 +1,44 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{% block title %}Elango | Portfolio{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+
+  <body>
+    <!-- Navigation Bar -->
+    <header>
+      <nav class="navbar">
+        <a href="/" class="logo">ELANGO<span>.</span></a>
+
+        <ul class="nav-links">
+          <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/#about">About</a></li>
+            <li><a href="/#skills">Skills</a></li>
+            <li><a href="/#experience">Experience</a></li>
+            <li><a href="/#projects">Projects</a></li>
+            <li><a href="/#certifications">Certifications</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>{% block content %} {% endblock %}</main>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2026 Elango. All rights reserved.</p>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+  </body>
+</html>
