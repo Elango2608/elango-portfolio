@@ -1,44 +1,45 @@
 {% load static %}
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>{% block title %}Elango | Portfolio{% endblock %}</title>
-
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-  </head>
-
-  <body>
-    <!-- Navigation Bar -->
-    <header>
-      <nav class="navbar">
-        <a href="/" class="logo">ELANGO<span>.</span></a>
-
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Elango S — Python Full Stack Developer portfolio.">
+    <title>{% block title %}Elango S | Python Full Stack Developer{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<header class="site-header">
+    <nav class="navbar container" aria-label="Main navigation">
+        <a class="logo" href="{% url 'home' %}">ELANGO<span>.</span></a>
+        <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button>
         <ul class="nav-links">
-          <ul class="nav-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="/#about">About</a></li>
-            <li><a href="/#skills">Skills</a></li>
-            <li><a href="/#experience">Experience</a></li>
-            <li><a href="/#projects">Projects</a></li>
-            <li><a href="/#certifications">Certifications</a></li>
-            <li><a href="/contact">Contact</a></li>
-          </ul>
+            <li><a href="{% url 'home' %}#home">Home</a></li>
+            <li><a href="{% url 'home' %}#about">About</a></li>
+            <li><a href="{% url 'home' %}#skills">Skills</a></li>
+            <li><a href="{% url 'home' %}#experience">Experience</a></li>
+            <li><a href="{% url 'home' %}#projects">Projects</a></li>
+            <li><a href="{% url 'home' %}#certifications">Certifications</a></li>
+            <li><a class="nav-contact" href="{% url 'contact' %}">Contact</a></li>
         </ul>
-      </nav>
-    </header>
+    </nav>
+</header>
 
-    <!-- Main Content -->
-    <main>{% block content %} {% endblock %}</main>
+<main>
+    {% if messages %}
+    <div class="container messages">
+        {% for message in messages %}<div class="message {{ message.tags }}">{{ message }}</div>{% endfor %}
+    </div>
+    {% endif %}
+    {% block content %}{% endblock %}
+</main>
 
-    <!-- Footer -->
-    <footer>
-      <p>&copy; 2026 Elango. All rights reserved.</p>
-    </footer>
-
-    <script src="{% static 'js/script.js' %}"></script>
-  </body>
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <p>© {% now "Y" %} Elango S. Built with Django.</p>
+        <a href="#home">Back to top ↑</a>
+    </div>
+</footer>
+<script src="{% static 'js/script.js' %}" defer></script>
+</body>
 </html>

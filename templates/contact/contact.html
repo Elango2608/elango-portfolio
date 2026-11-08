@@ -1,97 +1,19 @@
-{% extends 'base/base.html' %}
-
-{% block title %}Contact | Elango Portfolio{% endblock %}
-
+{% extends "base/base.html" %}
+{% block title %}Contact | Elango S{% endblock %}
 {% block content %}
-
-<section class="contact section" id="contact">
-
-    <div class="section-heading">
-        <p class="section-subtitle">LET'S CONNECT</p>
-        <h2>Contact <span>Me</span></h2>
-        <p class="contact-intro">
-            Have an opportunity or project in mind?
-            Feel free to get in touch.
-        </p>
+<section class="section contact-section">
+  <div class="container">
+    <div class="section-heading"><p class="eyebrow">LET'S CONNECT</p><h1>Contact <span>Me</span></h1><p class="section-description">Have an opportunity, project or question? Send me a message.</p></div>
+    <div class="contact-grid">
+      <aside class="surface-card contact-aside"><h2>Get in touch</h2><p>I'm open to internship opportunities, entry-level roles and collaboration.</p><div class="contact-item"><span>Email</span><a href="mailto:elango0508s@gmail.com">elango0508s@gmail.com</a></div><div class="contact-item"><span>LinkedIn</span><a href="https://www.linkedin.com/in/elango-s-developer" target="_blank" rel="noopener noreferrer">View LinkedIn ↗</a></div><div class="contact-item"><span>GitHub</span><a href="https://github.com/Elango2608" target="_blank" rel="noopener noreferrer">View GitHub ↗</a></div></aside>
+      <div class="surface-card form-card"><h2>Send a message</h2>
+        <form method="post" action="{% url 'contact' %}">{% csrf_token %}
+          {{ form.non_field_errors }}
+          {% for field in form %}<div class="form-group"><label for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{% for error in field.errors %}<small class="field-error">{{ error }}</small>{% endfor %}</div>{% endfor %}
+          <button class="button button-primary" type="submit">Send message →</button>
+        </form>
+      </div>
     </div>
-
-    <div class="contact-container">
-
-        <div class="contact-info">
-
-            <h3>Get In Touch</h3>
-
-            <p>
-                I'm open to internship opportunities,
-                entry-level positions and collaboration.
-            </p>
-
-            <div class="contact-detail">
-                <h4>Email</h4>
-                <p>elango0508s@gmail.com</p>
-            </div>
-
-            <div class="contact-detail">
-                <h4>LinkedIn</h4>
-                <a href="https://linkedin.com/in/elango-s-developer"
-                   target="_blank"
-                   rel="noopener noreferrer">
-                    View LinkedIn Profile
-                </a>
-            </div>
-
-            <div class="contact-detail">
-                <h4>GitHub</h4>
-                <a href="https://github.com/Elango2608"
-                   target="_blank"
-                   rel="noopener noreferrer">
-                    View GitHub Profile
-                </a>
-            </div>
-
-        </div>
-
-
-        <div class="contact-form-container">
-
-            <h3>Send Me a Message</h3>
-
-            <form method="POST" action="{% url 'contact' %}">
-
-                {% csrf_token %}
-
-                {{ form.non_field_errors }}
-
-                <div class="form-group">
-                    {{ form.name }}
-                    {{ form.name.errors }}
-                </div>
-
-                <div class="form-group">
-                    {{ form.email }}
-                    {{ form.email.errors }}
-                </div>
-
-                <div class="form-group">
-                    {{ form.subject }}
-                    {{ form.subject.errors }}
-                </div>
-
-                <div class="form-group">
-                    {{ form.message }}
-                    {{ form.message.errors }}
-                </div>
-
-                <button type="submit" class="btn-primary">
-                    Send Message
-                </button>
-
-            </form>
-
-        </div>
-
-    </div>
-
+  </div>
 </section>
-
 {% endblock %}
